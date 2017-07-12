@@ -1,0 +1,76 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.navigation-header {
+  background-color: #F2F2F2;
+  padding-bottom: 0px;
+    .navigation-title {
+      text-align: center;
+      transform: translateY(-50%, 50%);
+      color: #35495E;
+      .jumbo-title {
+        padding-bottom: 20px;
+        font-weight: 600;
+      }
+    }
+}
+.navigation-menu{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  background-color: #F2F2F2;
+  text-align: center;
+  .navigation-link {
+    display: inline-block;
+    padding: 15px 10px 10px 10px;
+    font-size:20px;
+    font-weight: 700;
+    color: black;
+  }
+
+  .link-is-active {
+    color: #41B883;
+    background-color: #FFFFFF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+}
+
+.panel {
+  .panel-heading {
+    background-color:#35495E;
+    color: #F2F2F2;
+    font-size: 16px;
+    font-weight: 700;
+    .project-date{
+      font-size:10px;
+    }
+  }
+}
+
+.error-msg{
+  color:red;
+  &:after{
+    content:'!';
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .5s;
+}
+
+.fade-enter-active {
+  transition-delay: .5s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+

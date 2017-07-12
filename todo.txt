@@ -1,0 +1,73 @@
+SPA with VUE and Laravel
+SQLite database
+(za to potrebno ustvariti database.sqlite datoteko v /database folderju)
+
+backend is for API
+
+Routing on front end with Vue vue-router package
+    npm install vue-router --save-dev
+    nov route.js file
+    in app.js import router from './routes.js'
+    !! also in bootstrap.js must ->
+    !! import VueRouter from 'vue-router'; and
+    Vue.use(VueRouter) da se ga začne uporabljat
+
+    V viewu, <router-link to="/pathIzRoutes">Domov</router-link>
+    <router-view></router-view> -> to je celoten template (Home.vue itd.) lahko se ga wrappa v karkoli
+
+    da je označen active link class se v routes.js nastavi
+    linkActiveClass= 'is-active oz katerikoli custom class'
+
+    za dodajanje new route:
+    ustvari nov .vue file
+    dodaj v routes.js
+    dodaj v view <router-link>
+
+Domov vsebuje projekte
+da se od projekta dobi samo ime uporabnika, brez emaila in ostalih podatkov od uporabnika, se v
+Project classu pod user funkcijo izbere  ->select(['id', 'name']); id nujno
+
+za datum se uporabi moment.js
+npm install moment --save
+import moment from 'moment';
+
+axios querye, ki se večkrat ponovijo se lahko da v /js/models mapo kot class
+
+class Project {
+    all() {
+        axios.get('/projects')
+    }
+    }
+    export default Project;
+
+ ali returna kot var namesto class
+
+
+ 28.part Vue filters
+    uporaba {{ project.created_at | formatirajDatum | lalal }}
+ filters : {
+    formatirajDatum(datum) {},
+    lalal(datum)
+
+29.part dodajanje forma za submit
+https://github.com/hamihaa/Vue-Forms
+iz public/js/app.js se skopira forms class in errors
+Errors se kopira v nov folder js/utilities/Errors.js
+na koncu classa export default Errors
+globalno dosegljivo -> v app.js ali bootstrap.js import Form from './utilities/Form.js';
+window.Form = Form;
+
+
+v addNew.vue se ga kliče s form: new Form({body: ''})
+<form @submit.prevent="onSubmit">
+vsa koda je reusable, razen form errors je potrebno napisat imena + dodat error msg class v css
+da se disabla gumb na error- :disabled="form.errors.any()
+
+da se error msg zbriše : <form @keydown="form.errors.clear()">
+
+30.part test vue
+
+
+
+101. implement vue sweet alert mixin confirm error alert
+https://vuetiful.wordpress.com/2017/02/28/adding-sweet-alert-to-your-vue-js-application-using-mixins/
