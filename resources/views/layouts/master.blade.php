@@ -21,11 +21,9 @@
             @include('layouts.header')
 
             <section class="section">
-                <div class="container">
                     <transition name="fade">
                         <router-view></router-view>
                     </transition>
-                </div>
             </section>
         </div>
 

@@ -4,6 +4,7 @@
 
 // Variables
 @import "variables";
+@import "animate";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -74,3 +75,6 @@
   opacity: 0
 }
 
+.parallax {
+  background-image: url('/public/images/bridge.jpg');
+}

@@ -1,6 +1,5 @@
 <template>
-    <div class="">
-        <div class="row">
+    <div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <!--popup -->
@@ -10,10 +9,11 @@
 
                     <div class="panel-body">
                         <div class="form-group">
-                            <input class="form-control" v-model="searchQuery" @keydown="findMatches">
+                            <input class="form-control" v-model="searchQuery"  placeholder="Search here..." @keydown="findMatches">
                         </div>
                         <div>
-                            <h3>Matches for string: {{ searchQuery }}</h3>
+                            <h3 v-show="searchQuery">{{ myMatches.length }} Matches for string:"{{ searchQuery }}"</h3>
+                            <h3 v-show="!searchQuery">All results, excluding the ones without letters: </h3>
                             <ul class="list-group">
                                 <li class="list-project list-group-item" v-for="item in myMatches" @click="openModal(item)">
                                     {{ item.body }}
@@ -23,7 +23,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 
@@ -57,7 +56,9 @@
                     var item = this.possibleItems[index];
 
                     if(item.body.indexOf(this.searchQuery) !== -1){
-                        matches.push(item);
+                          if(/[a-ž]/.test(item.body)){
+                            matches.push(item);
+                          }
                     }
                 }
                 return matches;

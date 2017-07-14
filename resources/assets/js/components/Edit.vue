@@ -25,12 +25,6 @@
             }
         },
 
-        watch : {
-            data: function() {
-                alert('hi');
-            }
-        },
-
         mounted(){
             this.form =  new Form({id: this.data.id, body: this.data.body});
         },
@@ -40,11 +34,18 @@
                 this.form
                         .patch('/projects/' + this.form.id)
                         .then((data) =>
-                            this.$emit('updated', data));
+                            this.$emit('updated', data))
+                        .catch(response => bus.$emit('newEvent', {msg:'Update failed.', isSuccess: false}));
             },
 
             onLeave() {
                 this.isVisible = false;
+            },
+
+            watch : {
+                data: function() {
+                    alert('hi');
+                }
             },
 
             toggleEdit(){

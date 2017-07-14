@@ -12,7 +12,6 @@ Vue.component('icon', Icon);
 window.Form = Form;
 window.bus = new Vue();
 
-
 Vue.component('home', require('./views/Home.vue'));
 
 
