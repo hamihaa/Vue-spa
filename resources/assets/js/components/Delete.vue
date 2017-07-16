@@ -23,7 +23,6 @@
             deleteProject() {
                 if (confirm('Do you really want to delete this project?')) {
                     axios.delete('/projects/' + this.project.id);
-                    bus.$emit('deleted', this.index);
                 }
             }
         }

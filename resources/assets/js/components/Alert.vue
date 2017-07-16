@@ -42,6 +42,11 @@
                 this.isVisible = true;
                 this.msg = data.msg;
                 this.isSuccess = data.isSuccess;
+
+                //hide after 3s
+                setTimeout(
+                        () => this.isVisible = false, 3000
+                )
             }
         }
     }

@@ -11753,6 +11753,7 @@ button.close {
 .navigation-header {
   background-color: #F2F2F2;
   padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .navigation-header .navigation-title {
@@ -11827,6 +11828,14 @@ button.close {
 }
 
 .parallax {
-  background-image: url("/public/images/bridge.jpg");
+  background-image: url("/images/dots.png");
+  /* The image used */
+  /* Full height */
+  height: 100%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 

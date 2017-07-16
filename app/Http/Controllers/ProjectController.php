@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectAdded;
+use App\Events\ProjectDeleted;
+use App\Events\ProjectUpdated;
 use App\Project;
 use Illuminate\Http\Request;
 use App\User;
@@ -45,6 +48,9 @@ class ProjectController extends Controller
             ->projects()
             ->create($request->only(['body']));
 
+        //announce event
+        event(new ProjectAdded($project));
+
         //return msg with user
         return $project->load('user');
 
@@ -86,6 +92,9 @@ class ProjectController extends Controller
         ]);
 
         $project->update(['body' => $request['body']]);
+
+        event(new ProjectUpdated($project));
+
         return $project;
     }
 
@@ -97,8 +106,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        event(new ProjectDeleted($project));
         $project->delete();
-
         return $project;
     }
 

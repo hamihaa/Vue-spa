@@ -42,12 +42,6 @@
                 this.isVisible = false;
             },
 
-            watch : {
-                data: function() {
-                    alert('hi');
-                }
-            },
-
             toggleEdit(){
                 this.$emit('dontedit');
             }

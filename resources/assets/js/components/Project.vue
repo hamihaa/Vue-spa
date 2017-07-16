@@ -58,7 +58,6 @@
             wasUpdated(data){
                 this.data.body = data.body;
                 this.doEdit = false;
-                bus.$emit('newEvent',  {msg:'Object has been updated.', isSuccess: true});
             },
 
             onHover() {

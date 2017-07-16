@@ -31,3 +31,16 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+
+import Echo from "laravel-echo"
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '209ec7cdf803b574bc89',
+    'cluster' : 'eu',
+    'encrypted' : true
+
+});

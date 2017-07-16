@@ -15,6 +15,9 @@
             <router-link class="navigation-link" to="/search" exact>
                 Live search
             </router-link>
+            <router-link class="navigation-link" to="/chat" exact>
+                Chat
+            </router-link>
         </div>
         <!-- /Navigation menu -->
     </div>

@@ -16,6 +16,10 @@ let myRoutes = [
     {
         path: '/contact',
         component: require('./views/Contact.vue')
+    },
+    {
+        path: '/chat',
+        component: require('./views/Chat.vue')
     }
 ];
 

@@ -1,19 +1,19 @@
 <template>
     <div class="crud-body container-fluid">
-        <div class="parallax"></div>
 
         <div class="row">
-            <div class="container">
+            <div class="container-fluid parallax">
                 <div class="col-md-8 col-md-offset-2">
-                    <alert></alert>
                     <h4>Reusable form and errors objects (dont forget about :key)</h4>
+                    <alert></alert>
                     <!-- Projects -->
                     <div class="panel panel-default" v-for="(data, index) in items">
                         <project-component :data="data" :index="index" :key="data.id"></project-component>
                     </div>
                     <!-- /Project -->
                     <!-- Add new projects form -->
-                    <add-new @completed="addToList"></add-new>
+                    <!-- @completed="addToList" <- use this if not using broadcast -->
+                    <add-new></add-new>
                 </div>
             </div>
         </div>
@@ -38,15 +38,37 @@
         },
 
         created() {
-            bus.$on('deleted',
-                    (index) => this.removeFromList(index));
             this.refreshList();
+
+            Echo.channel('chatroom')
+                .listen('ProjectAdded', (data) => {
+                    this.addToList(data.project)
+                })
+                .listen('ProjectUpdated', (data) => {
+                    var project = this.items.find((project) => project.id === data.project.id);
+//                        console.log(project);
+                    if(project) {
+                        var index = this.items.indexOf(project);
+                        this.items[index].body = data.project.body;
+                        bus.$emit('newEvent',  {msg:'Object has been updated.', isSuccess: true});
+                    }
+                })
+                .listen('ProjectDeleted',(data) => {
+                    var project = this.items.find((project) => project.id === data.project.id);
+//                        console.log(project);
+                    if (project) {
+                        var index = this.items.indexOf(project);
+                        this.removeFromList(index);
+                    }
+                })
         },
 
         methods: {
             refreshList(){
                 Projects.all()
-                    .then(response => this.items = response.data);
+                    .then(response => {
+                        this.items = response.data;
+                    });
             },
 
             removeFromList(index) {
@@ -65,18 +87,6 @@
 <style>
     .crud-body {
         height: 100%;
-    }
-
-    .parallax {
-        /* The image used */
-        /* Full height */
-        height: 100%;
-
-        /* Create the parallax scrolling effect */
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
     }
     h4 {
         text-align: center;
