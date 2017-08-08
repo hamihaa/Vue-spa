@@ -15,6 +15,4 @@ STEPS:
 - npm install --save laravel-echo pusher-js
 - in bootstrap.js file uncomment Echo part, to enable it in app
 
-
 make:event ProjectAdded
-
